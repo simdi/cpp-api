@@ -3,8 +3,18 @@
 int main(int argc, char* argv[]) {
   crow::SimpleApp app;
 
-  CROW_ROUTE(app, "/")([](){
-    return "<div><h1>Hello from crow</h1></div>";
+  CROW_ROUTE(app, "/")([](const crow::request &req, crow::response &res){
+    std::ifstream in("../public/index.html", std::ifstream::in);
+    // if (in) {
+      std::ostringstream contents;
+      contents << in.rdbuf();
+      in.close();
+      std::cout << contents.str() << std::endl;
+      res.write(contents.str());
+    // } else {
+    //   res.write("Not something Found");
+    // }
+    res.end();
   });
 
   char* port = getenv("PORT");
