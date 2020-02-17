@@ -1,0 +1,23 @@
+[
+  {
+    "email": "johndoe@yahoo.com",
+    "firstname": "John",
+    "lastname": "Doe",
+    "phone": "234567890",
+    "image": "https://robohash.org/utautodit.jpg?size=250x250&set=set1"
+  },
+  {
+    "email": "ebere@yahoo.com",
+    "firstname": "Ebere",
+    "lastname": "Agba",
+    "phone": "234567890",
+    "image": "https://robohash.org/utautodit.jpg?size=250x250&set=set1"
+  },
+  {
+    "email": "you@yahoo.com",
+    "firstname": "You",
+    "lastname": "Me",
+    "phone": "234567890",
+    "image": "https://robohash.org/utautodit.jpg?size=250x250&set=set1"
+  }
+]

@@ -22,20 +22,19 @@ void sendHtml(crow::response &res, std::string filename) {
 }
 
 void sendImages(crow::response &res, std::string filename) {
-  sendFile(res, filename + "images/" + filename, "images/jpeg");
+  sendFile(res, "images/" + filename, "images/jpeg");
 }
 void sendScripts(crow::response &res, std::string filename) {
-  sendFile(res, filename + "scripts/" + filename, "text/javascript");
+  sendFile(res, "scripts/" + filename, "text/javascript");
 }
 
 void sendStyles(crow::response &res, std::string filename) {
-  sendFile(res, filename + "styles/" + filename, "text/css");
+  sendFile(res, "styles/" + filename, "text/css");
 }
 
 int main(int argc, char* argv[]) {
   std::cout << "argc: " << argc << " argv: " << argv << std::endl;
   crow::SimpleApp app;
-  // crow::mustache::set_base(".");
 
   CROW_ROUTE(app, "/styles/<string>")([](const crow::request &req, crow::response &res, std::string filename){
     sendStyles(res, filename);
@@ -51,9 +50,6 @@ int main(int argc, char* argv[]) {
 
   CROW_ROUTE(app, "/")([](const crow::request &req, crow::response &res){
     sendHtml(res, "index");
-    // crow::mustache::context ctx;
-    // auto main_page = crow::mustache::load("main.html");
-    // return main_page.render();
   });
 
   char* port = getenv("PORT");
