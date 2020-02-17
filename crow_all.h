@@ -3334,7 +3334,11 @@ namespace sha1
 #include <boost/asio/ssl.hpp>
 #endif
 
-
+#if BOOST_VERSION >= 107000
+#define GET_IO_SERVICE(s) ((boost::asio::io_context&)(s).get_executor().context())
+#else
+#define GET_IO_SERVICE(s) ((s).get_io_service())
+#endif
 namespace crow
 {
     using namespace boost;
@@ -3350,7 +3354,8 @@ namespace crow
 
         boost::asio::io_service& get_io_service()
         {
-            return socket_.get_io_service();
+          return GET_IO_SERVICE(socket_);
+            // return socket_.get_io_service();
         }
 
         tcp::socket& raw_socket()
