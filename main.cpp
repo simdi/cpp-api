@@ -7,7 +7,6 @@ void sendFile(crow::response &res, std::string filename, std::string contentType
     std::ostringstream contents;
     contents << input.rdbuf();
     input.close();
-    std::cout << contents.str() << std::endl;
     res.set_header("Content-Type", contentType);
     res.write(contents.str());
   } else {
